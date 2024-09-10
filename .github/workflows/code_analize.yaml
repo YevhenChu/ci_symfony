@@ -25,15 +25,15 @@ jobs:
       - name: Copy .env.test.local
         run: php -r "file_exists('app/.env.test.local') || copy('app/.env.test', 'app/.env.test.local');"
       
-#      # Check composer packages
-#      - name: Cache Composer packages
-#        id: composer-cache
-#        uses: actions/cache@v3
-#        with:
-#          path: vendor
-#          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-#          restore-keys: |
-#            ${{ runner.os }}-php-
+      # Check composer packages
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
 
 #      # Install Dependencies
 #      - name: Install Dependencies
