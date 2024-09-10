@@ -7,14 +7,14 @@ on:
     branches:
       - main
 
-  jobs:
-    analyze:
-      run-on: ubuntu-latest
-      concurrency:
-        group: ${{ github.workflow }}-${{ github.ref }}
-      steps:
-        - uses: actions/checkout@3
-        - name: Phpstan analizer
-          run: make phpstan
-        - name: rector analizer
-          run: make rector
+jobs:
+  analyze:
+    run-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@3
+      - name: Phpstan analizer
+        run: make phpstan
+      - name: rector analizer
+        run: make rector
