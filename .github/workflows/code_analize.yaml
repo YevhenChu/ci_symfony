@@ -23,7 +23,7 @@ jobs:
 
       # Copy .env file
       - name: Copy .env.test.local
-        run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
+        run: php -r "file_exists('app/.env.test.local') || copy('app/.env.test', 'app/.env.test.local');"
       
 #      # Check composer packages
 #      - name: Cache Composer packages
