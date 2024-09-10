@@ -24,7 +24,11 @@ jobs:
       # Copy .env file
       - name: Copy .env.test.local
         run: php -r "file_exists('app/.env.test.local') || copy('app/.env.test', 'app/.env.test.local');"
-      
+
+      # Install Dependencies
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
       # Check composer packages
       - name: Cache Composer packages
         id: composer-cache
@@ -34,10 +38,6 @@ jobs:
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-
-
-#      # Install Dependencies
-#      - name: Install Dependencies
-#        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       
 #      # Create Database
 #      - name: Create Database
