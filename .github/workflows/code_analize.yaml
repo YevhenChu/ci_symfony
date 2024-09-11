@@ -18,7 +18,7 @@ jobs:
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: false
           MYSQL_ROOT_PASSWORD: symfony
-          MYSQL_DATABASE: symfony
+          MYSQL_DATABASE: symfony_test
         ports:
           - 3306/tcp
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -86,7 +86,7 @@ jobs:
             php bin/console doctrine:migrations:migrate --env=test || echo "No migrations found or migration failed"
             php bin/console doctrine:fixtures:load --no-interaction
         env:
-          DATABASE_URL: mysql://root:symfony@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/symfony_test
+          DATABASE_URL: mysql://root:symfony@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/symfony
           
       - name: Run unit and functional tests
         working-directory: ${{env.working-directory}}
