@@ -68,7 +68,12 @@ jobs:
       - name: Analyse PHP Code (PHPStan)
         run: vendor/bin/phpstan analyse
         working-directory: ${{env.working-directory}}
-  
+
+      # Analyse PHP code (rector)
+      - name: Analyse PHP Code (Rector)
+        run: vendor/bin/rector process --config rector.php --dry-run
+        working-directory: ${{env.working-directory}}
+
       # Symfony
       - name: Check the Symfony console
         run: |
