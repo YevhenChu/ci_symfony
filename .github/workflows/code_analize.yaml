@@ -12,6 +12,8 @@ permissions:
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./app
     #concurrency:
     #  group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -24,10 +26,12 @@ jobs:
       # Copy .env file
       - name: Copy .env.test.local
         run: php -r "file_exists('app/.env.test.local') || copy('app/.env.test', 'app/.env.test.local');"
+        working-directory: ${{env.working-directory}}
 
       # Install Dependencies
       - name: Install Dependencies
         run: composer -v
+        working-directory: ${{env.working-directory}}
         # run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       # Check composer packages
