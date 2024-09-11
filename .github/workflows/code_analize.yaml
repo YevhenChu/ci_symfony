@@ -14,8 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       working-directory: ./app
-    #concurrency:
-    #  group: ${{ github.workflow }}-${{ github.ref }}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    
     steps:
       - uses: shivammathur/setup-php@v2
         with:
@@ -25,7 +26,7 @@ jobs:
 
       # Copy .env file
       - name: Copy .env.test.local
-        run: php -r "file_exists('.env.test.local') || copy('.env.test', 'app/.env.test.local');"
+        run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
         working-directory: ${{env.working-directory}}
 
       # Install Dependencies
@@ -59,10 +60,11 @@ jobs:
         working-directory: ${{env.working-directory}}
   
       # Symfony
-#      - name: Check the Symfony console
-#        run: |
-#          php bin/console -V
-#          php bin/console about
+      - name: Check the Symfony console
+        run: |
+          php bin/console -V
+          php bin/console about
+        working-directory: ${{env.working-directory}}
   
       # Tests
 #      - name: Run the migrations
