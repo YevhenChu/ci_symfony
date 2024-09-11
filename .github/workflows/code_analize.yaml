@@ -30,9 +30,8 @@ jobs:
 
       # Install Dependencies
       - name: Install Dependencies
-        run: composer -v
         working-directory: ${{env.working-directory}}
-        # run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       # Check composer packages
       - name: Cache Composer packages
