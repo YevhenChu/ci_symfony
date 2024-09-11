@@ -67,9 +67,10 @@ jobs:
         working-directory: ${{env.working-directory}}
   
       # Tests
-#      - name: Run the migrations
-#        run: |
-#          php bin/console doctrine:migrations:migrate --no-interaction
+      - name: Run the migrations
+        run: |
+          php bin/console doctrine:migrations:migrate --no-interaction
+        working-directory: ${{env.working-directory}}
   
 #      - name: Run unit and functional tests
 #        run: |
