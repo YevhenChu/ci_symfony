@@ -86,7 +86,7 @@ jobs:
             php bin/console doctrine:fixtures:load --no-interaction
         working-directory: ${{env.working-directory}}
         env:
-          DATABASE_URL="mysql://symfony:symfony@mysqldb:3306/symfony?serverVersion=8.0.32&charset=utf8mb4"
+          DATABASE_URL: mysql://root:symfony@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/symfony
           
 #      - name: Run unit and functional tests
 #        run: |
