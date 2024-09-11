@@ -54,11 +54,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-
       
-      # Create Database
-      - name: Create Database
-        run: |
-          mkdir -p data
-          touch data/database.sqlite
+      # # Create Database
+      # - name: Create Database
+      #   run: |
+      #     mkdir -p data
+      #     touch data/database.sqlite
 
 #      - name: Execute tests (Unit and Feature tests) via PHPUnit
 #        env:
@@ -86,7 +86,7 @@ jobs:
             php bin/console doctrine:fixtures:load --no-interaction
         working-directory: ${{env.working-directory}}
         env:
-          DATABASE_URL: sqlite:///%kernel.project_dir%/var/database.sqlite
+          DATABASE_URL="mysql://symfony:symfony@mysqldb:3306/symfony?serverVersion=8.0.32&charset=utf8mb4"
           
 #      - name: Run unit and functional tests
 #        run: |
