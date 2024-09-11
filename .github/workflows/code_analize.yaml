@@ -27,7 +27,7 @@ jobs:
 
       # Install Dependencies
       - name: Install Dependencies
-        run: echo composer -v
+        run: composer -v
         # run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       # Check composer packages
